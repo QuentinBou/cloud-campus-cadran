@@ -1,5 +1,4 @@
 const mainContainer = document.querySelector('.main')
-const successMsg = document.querySelector('.success')
 
 const redLight = document.querySelector('.red')
 const greenLight = document.querySelector('.green')
@@ -76,8 +75,6 @@ const successAnim = () => {
     hideSide()
     setTimeout(() => {
         mainContainer.style.display = "none";
-        successMsg.style.visibility = "visible";
-        successMsg.style.transform = "translate(-50%, -50%) scale(1)"
         successAlert()
     }, 1750);
 }
