@@ -40,20 +40,14 @@
     box-shadow: 0px 0px 40px green;
 }
 .container {
-    background-color: black;
+    background-color: transparent;
     padding-top: 60px;
     padding-bottom: 60px;
     padding-left: 40px;
     display: grid;
     grid-template-columns: repeat(3, 8vw);
     grid-template-rows: repeat(4, 8vh);
-    grid-gap: 20px;
-    background: rgba(175, 175, 175, 0.77);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.9px);
-    -webkit-backdrop-filter: blur(7.9px);
-    border: 1px solid rgba(175, 175, 175, 0.29);
+    grid-gap: 40px;
 }
 .container div {
     user-select: none;
@@ -61,8 +55,8 @@
     background-color: antiquewhite;
     cursor: pointer;
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,6 +75,11 @@
     transform: scale(.97);
     color: blue;
     text-shadow: 0px 0px 1px blue;
+}
+.active {
+    transform: scale(.97) !important;
+    color: blue !important;
+    text-shadow: 0px 0px 1px blue !important;
 }
 .password {
     display: flex;
@@ -117,8 +116,15 @@
     animation: blink 4s linear infinite;
 }
 h2 {
-    font-size: 2rem !important;
+    font-size: 1.2rem !important;
     font-weight: bold !important;
+}
+.timer {
+    position: absolute;
+    font-size: 4rem;
+    top: 10%;
+    left: 10%;
+    color: whitesmoke;
 }
 @keyframes blink {
     0%{

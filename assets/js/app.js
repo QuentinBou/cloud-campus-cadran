@@ -6,6 +6,8 @@ const greenLight = document.querySelector('.green')
 
 const buttons = document.querySelectorAll('.container div')
 
+let resolveTime;
+
 let numbers;
 
 let numberIter = 0;
@@ -47,10 +49,10 @@ const playClick = () => {
 const blinkCircle = (target, classname) => {
     let blinkInterval = setInterval(() => {
         target.classList.toggle(classname)
-    }, 500);
+    }, 200);
     setTimeout(() => {
         clearInterval(blinkInterval)
-    }, 2000);
+    }, 1200);
 }
 
 const blinkBoth = () => {
@@ -71,6 +73,7 @@ const blinkBoth = () => {
 const successAnim = () => {
     mainContainer.style.opacity = 0
     mainContainer.style.left = "-50%"
+    hideSide()
     setTimeout(() => {
         mainContainer.style.display = "none";
         successMsg.style.visibility = "visible";
@@ -87,7 +90,7 @@ const successAlert = () => {
         timer: 3000,
         icon: 'success',
         timerProgressBar: true,
-        title: "Bien joué !"
+        title: resolveTime
     })
 }
 
@@ -95,9 +98,14 @@ const sleep = timeMs => {
     return new Promise(resolve => setTimeout(resolve, timeMs))
 }
 
-const hackingPassword = async () => {
+const hideSide = () => {
     document.querySelector('.skip').style.visibility = "hidden"
     document.querySelector('h2').style.visibility = "hidden"
+    document.querySelector('.timer').style.visibility = "hidden"
+}
+
+const hackingPassword = async () => {
+    hideSide()
     let passwordArray = myPassword.toString().split("")
     for (let i = 0; i <= passwordArray.length - 1; i++){
         let nextNum = passwordArray[i]
@@ -105,11 +113,13 @@ const hackingPassword = async () => {
         for (const button of buttons) {
             if (button.textContent == nextNum){
                 button.style.backgroundColor = "green"
+                button.className = "active"
             }
         }
         playClick()
         await sleep(1000)
     }
+    resolveTime = "Tricheur !"
     blinkBoth()
     
 }
@@ -127,14 +137,16 @@ const checkNumber = (num, event) => {
     if (numbers[numberIter].textContent === "*" && num === parseInt(passwordArray[numberIter])){
         if (numberIter == numbers.length - 1){
             blinkBoth()
+            resolveTime = getTime()
         } else {
             blinkCircle(greenLight, 'green-blink')
         }
         event.target.style.backgroundColor = "green"
+        event.target.className = "active"
         setTimeout(() => {
             numbers[numberIter].textContent = num
             numberIter += 1
-        }, 2000);
+        }, 1200);
     } else if (myPassword.toString().split("").includes(event.target.textContent)) {
         event.target.style.backgroundColor = "pink"
     }  else {
@@ -146,15 +158,43 @@ const checkNumber = (num, event) => {
 
 const generatePassword = (length) => {
     let passwordArray = [];
+    let newNum;
     for (let i = 0; i < length; i++){
-        passwordArray[i] = Math.floor(Math.random() * 10)
+        do {
+            newNum = Math.floor(Math.random() * 10)
+        } while (passwordArray.includes(newNum))
+        passwordArray[i] = newNum
     }
+    console.log(passwordArray);
     return passwordArray.join('')
 }
 
-for (const button of buttons) {
-    button.addEventListener('click', clickNumber)
+const getTime = () => {
+    let timeArray = document.querySelector('.timer').textContent.split(':')
+    return `Réussi en ${timeArray[0]} minutes et ${timeArray[1]} secondes`
 }
+
+const startTimer = () => {
+    let timer = document.querySelector('.timer')
+    let min = 0
+    let second = 0
+    function formatTime(time){
+        if (time < 10) {
+            return `0${time}`
+        } else return time
+    }
+    setInterval(() => {
+        second += 1
+        if (second == 60){
+            second = 0
+            min += 1
+            timer.textContent = `${formatTime(min)}:${formatTime(second)}`
+        } else {
+            timer.textContent = `${formatTime(min)}:${formatTime(second)}`
+        }
+    }, 1000);
+}
+
 document.querySelector('.skip').addEventListener('click', hackingPassword)
 
 window.addEventListener('load', () => {
@@ -163,6 +203,10 @@ window.addEventListener('load', () => {
         let newNumber = document.createElement('span')
         newNumber.textContent = "*"
         document.querySelector('.password').appendChild(newNumber)
+        for (const button of buttons) {
+            button.addEventListener('click', clickNumber)
+        }
     }
-    numbers = document.querySelectorAll('span')
+    numbers = document.querySelectorAll('.password span')
+    startTimer()
 })
