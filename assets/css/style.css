@@ -13,7 +13,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    gap: 5rem;
+    gap: 3rem;
     min-height: 100vh;
     width: 100%;
     transition: all 2s ease-in-out;
@@ -28,30 +28,41 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 4px solid white;
     background-color: gainsboro;
 }
 .red-blink {
     background-color: red;
+    box-shadow: 0px 0px 40px red;
 }
 .green-blink {
     background-color: green;
+    box-shadow: 0px 0px 40px green;
 }
 .container {
     background-color: black;
-    padding: 25px;
-    border-radius: 10px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 40px;
     display: grid;
-    grid-template-columns: repeat(3, 10vw);
-    grid-template-rows: repeat(4, 10vh);
-    grid-gap: 10px;
+    grid-template-columns: repeat(3, 8vw);
+    grid-template-rows: repeat(4, 8vh);
+    grid-gap: 20px;
+    background: rgba(175, 175, 175, 0.77);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.9px);
+    -webkit-backdrop-filter: blur(7.9px);
+    border: 1px solid rgba(175, 175, 175, 0.29);
 }
 .container div {
     user-select: none;
     color: rgb(100, 100, 240);
     background-color: antiquewhite;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +70,12 @@
     font-weight: bold;
     box-shadow: -1px -1px 3px;
     transition: all .3s ease-in-out;
+    background: rgba(255, 255, 255, 0.56);
+    border-radius: 50%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.3px);
+    -webkit-backdrop-filter: blur(9.3px);
+    border: 1px solid rgba(255, 255, 255, 0.29);
 }
 .container div:hover {
     transform: scale(.97);
@@ -73,6 +90,7 @@
 }
 .password span {
     font-size: 4rem;
+    color: whitesmoke;
 }
 .success {
     font-family: cursive;
@@ -89,23 +107,18 @@
 .success h1{
     font-size: 4rem;
 }
-.first-help, .second-help {
+.help-text {
     font-size: 2rem;
-    font-family: cursive;
-    width: 400px;
-    position: absolute;
-    visibility: hidden;
+    width: 30%;
     text-align: center;
-}
-.first-help {
-    transform: rotate(-45deg);
+    position: absolute;
     top: 40%;
-    left: 10%;
+    color: whitesmoke;
+    animation: blink 4s linear infinite;
 }
-.second-help {
-    transform: rotate(45deg);
-    top: 40%;
-    right: 5%;
+h2 {
+    font-size: 2rem !important;
+    font-weight: bold !important;
 }
 @keyframes blink {
     0%{
@@ -117,4 +130,332 @@
     100%{
         opacity: 1;
     }
+}
+
+.skip {
+    position: absolute !important;
+    top: 40%;
+    right: 10%;
+}
+
+.skip,
+.skip:after {
+  width: 150px;
+  height: 76px;
+  line-height: 78px;
+  font-size: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+  border: 0;
+  color: #fff;
+  letter-spacing: 3px;
+  box-shadow: 6px 0px 0px #00E6F6;
+  outline: transparent;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.skip:after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -6px 0 0);
+  --slice-2: inset(50% -6px 30% 0);
+  --slice-3: inset(10% -6px 85% 0);
+  --slice-4: inset(40% -6px 43% 0);
+  --slice-5: inset(80% -6px 5% 0);
+  
+  content: 'HACKING';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
+  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+  clip-path: var(--slice-0);
+}
+
+.skip:hover:after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(-20px, -10px);
+  }
+  10% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, 10px);
+  }
+  20% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 10px);
+  }
+  30% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, 5px);
+  }
+  40% {
+    clip-path: var(--slice-2);
+    transform: translate(-5px, 0px);
+  }
+  50% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+  60% {
+    clip-path: var(--slice-4);
+    transform: translate(5px, 10px);
+  }
+  70% {
+    clip-path: var(--slice-2);
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    clip-path: var(--slice-5);
+    transform: translate(20px, -10px);
+  }
+  90% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    clip-path: var(--slice-1);
+    transform: translate(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .skip,
+  .skip:after {
+    width: 200px;
+    height: 86px;
+    line-height: 88px;
+  }
+}
+
+
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #140f1a;
+    overflow: hidden;
+}
+
+.background span {
+    width: 9vmin;
+    height: 9vmin;
+    border-radius: 9vmin;
+    backface-visibility: hidden;
+    position: absolute;
+    animation: move;
+    animation-duration: 20;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+.background span:nth-child(0) {
+    color: #E45A84;
+    top: 63%;
+    left: 28%;
+    animation-duration: 271s;
+    animation-delay: -277s;
+    transform-origin: -24vw -13vh;
+    box-shadow: 18vmin 0 2.8804636715597707vmin currentColor;
+}
+.background span:nth-child(1) {
+    color: #FFACAC;
+    top: 32%;
+    left: 34%;
+    animation-duration: 240s;
+    animation-delay: -238s;
+    transform-origin: 6vw -20vh;
+    box-shadow: 18vmin 0 2.3557554026597662vmin currentColor;
+}
+.background span:nth-child(2) {
+    color: #E45A84;
+    top: 19%;
+    left: 87%;
+    animation-duration: 299s;
+    animation-delay: -146s;
+    transform-origin: 2vw -12vh;
+    box-shadow: 18vmin 0 3.2133409022757586vmin currentColor;
+}
+.background span:nth-child(3) {
+    color: #FFACAC;
+    top: 53%;
+    left: 88%;
+    animation-duration: 201s;
+    animation-delay: -155s;
+    transform-origin: 6vw 3vh;
+    box-shadow: 18vmin 0 3.1885028931868913vmin currentColor;
+}
+.background span:nth-child(4) {
+    color: #E45A84;
+    top: 2%;
+    left: 59%;
+    animation-duration: 197s;
+    animation-delay: -191s;
+    transform-origin: 21vw -21vh;
+    box-shadow: -18vmin 0 2.3547770889220434vmin currentColor;
+}
+.background span:nth-child(5) {
+    color: #E45A84;
+    top: 31%;
+    left: 53%;
+    animation-duration: 291s;
+    animation-delay: -128s;
+    transform-origin: 5vw -3vh;
+    box-shadow: 18vmin 0 2.8670951700321607vmin currentColor;
+}
+.background span:nth-child(6) {
+    color: #583C87;
+    top: 81%;
+    left: 84%;
+    animation-duration: 66s;
+    animation-delay: -61s;
+    transform-origin: 1vw 25vh;
+    box-shadow: -18vmin 0 2.7658792730077817vmin currentColor;
+}
+.background span:nth-child(7) {
+    color: #FFACAC;
+    top: 92%;
+    left: 90%;
+    animation-duration: 156s;
+    animation-delay: -185s;
+    transform-origin: -5vw 7vh;
+    box-shadow: 18vmin 0 2.2511678663672625vmin currentColor;
+}
+.background span:nth-child(8) {
+    color: #FFACAC;
+    top: 98%;
+    left: 64%;
+    animation-duration: 184s;
+    animation-delay: -106s;
+    transform-origin: -18vw -19vh;
+    box-shadow: -18vmin 0 2.3055011288805725vmin currentColor;
+}
+.background span:nth-child(9) {
+    color: #E45A84;
+    top: 41%;
+    left: 97%;
+    animation-duration: 61s;
+    animation-delay: -201s;
+    transform-origin: -1vw 9vh;
+    box-shadow: -18vmin 0 2.9424212478300316vmin currentColor;
+}
+.background span:nth-child(10) {
+    color: #583C87;
+    top: 68%;
+    left: 66%;
+    animation-duration: 75s;
+    animation-delay: -175s;
+    transform-origin: 5vw 13vh;
+    box-shadow: -18vmin 0 3.2496168205376197vmin currentColor;
+}
+.background span:nth-child(11) {
+    color: #E45A84;
+    top: 34%;
+    left: 86%;
+    animation-duration: 192s;
+    animation-delay: -5s;
+    transform-origin: 7vw -23vh;
+    box-shadow: 18vmin 0 2.3637241991559375vmin currentColor;
+}
+.background span:nth-child(12) {
+    color: #FFACAC;
+    top: 14%;
+    left: 9%;
+    animation-duration: 76s;
+    animation-delay: -24s;
+    transform-origin: -15vw 15vh;
+    box-shadow: 18vmin 0 2.9703945228116275vmin currentColor;
+}
+.background span:nth-child(13) {
+    color: #FFACAC;
+    top: 85%;
+    left: 79%;
+    animation-duration: 45s;
+    animation-delay: -133s;
+    transform-origin: 0vw 15vh;
+    box-shadow: -18vmin 0 3.1607119284245675vmin currentColor;
+}
+.background span:nth-child(14) {
+    color: #FFACAC;
+    top: 41%;
+    left: 61%;
+    animation-duration: 216s;
+    animation-delay: -74s;
+    transform-origin: -24vw 14vh;
+    box-shadow: 18vmin 0 3.162899992503066vmin currentColor;
+}
+.background span:nth-child(15) {
+    color: #583C87;
+    top: 83%;
+    left: 16%;
+    animation-duration: 163s;
+    animation-delay: -26s;
+    transform-origin: 0vw -6vh;
+    box-shadow: 18vmin 0 3.066707706814455vmin currentColor;
+}
+.background span:nth-child(16) {
+    color: #FFACAC;
+    top: 93%;
+    left: 53%;
+    animation-duration: 25s;
+    animation-delay: -262s;
+    transform-origin: 12vw -7vh;
+    box-shadow: 18vmin 0 2.3701991977269317vmin currentColor;
+}
+.background span:nth-child(17) {
+    color: #583C87;
+    top: 94%;
+    left: 31%;
+    animation-duration: 70s;
+    animation-delay: -299s;
+    transform-origin: 22vw 22vh;
+    box-shadow: 18vmin 0 2.4611425646742218vmin currentColor;
+}
+.background span:nth-child(18) {
+    color: #583C87;
+    top: 91%;
+    left: 75%;
+    animation-duration: 7s;
+    animation-delay: -103s;
+    transform-origin: 25vw -7vh;
+    box-shadow: 18vmin 0 2.6943684618138475vmin currentColor;
+}
+.background span:nth-child(19) {
+    color: #583C87;
+    top: 35%;
+    left: 66%;
+    animation-duration: 104s;
+    animation-delay: -40s;
+    transform-origin: -18vw -3vh;
+    box-shadow: -18vmin 0 3.131216369757963vmin currentColor;
+}
+.background span:nth-child(20) {
+    color: #E45A84;
+    top: 49%;
+    left: 29%;
+    animation-duration: 258s;
+    animation-delay: -174s;
+    transform-origin: 10vw -20vh;
+    box-shadow: -18vmin 0 2.772262721756976vmin currentColor;
 }
