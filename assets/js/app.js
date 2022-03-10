@@ -50,6 +50,7 @@ const blinkCircle = (target, classname) => {
         target.classList.toggle(classname)
     }, 200);
     setTimeout(() => {
+        target.classList.remove(classname)
         clearInterval(blinkInterval)
     }, 1200);
 }
@@ -81,12 +82,9 @@ const successAnim = () => {
 
 const successAlert = () => {
     Swal.fire({
-        toast: true,
-        position: 'top-end',
+        position: 'center',
         showConfirmButton: false,
-        timer: 3000,
         icon: 'success',
-        timerProgressBar: true,
         title: resolveTime
     })
 }

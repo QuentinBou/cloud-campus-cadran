@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-size: 16px;
 }
+body {
+    background: black;
+}
 .main {
     position: absolute;
     top: 50%;
@@ -97,11 +100,12 @@
     text-align: center;
     position: absolute;
     top: 40%;
+    left: 2%;
     color: whitesmoke;
     animation: blink 4s linear infinite;
 }
 h2 {
-    font-size: 1.2rem !important;
+    font-size: 2.2rem !important;
     font-weight: bold !important;
 }
 .timer {
@@ -355,7 +359,9 @@ tbody tr td {
     }
 }
 
-.background {
+canvas {display: block;}
+
+/* .background {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -567,5 +573,5 @@ tbody tr td {
     animation-delay: -174s;
     transform-origin: 10vw -20vh;
     box-shadow: -18vmin 0 2.772262721756976vmin currentColor;
-}
+} */
 
